@@ -8,7 +8,7 @@ namespace Samples.ViewModel
 {
     public class WebAuthenticatorViewModel : BaseViewModel
     {
-        const string authenticationUrl = "http://localhost:1240/mobileauth/";
+        const string authenticationUrl = "https://social-auth.daivietgo.vn/mobileauth/";
 
         public WebAuthenticatorViewModel()
         {
