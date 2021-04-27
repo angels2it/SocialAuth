@@ -46,35 +46,36 @@ namespace Sample.Server.WebAuthenticator
                     fb.AppId = Configuration["FacebookAppId"];
                     fb.AppSecret = Configuration["FacebookAppSecret"];
                     fb.SaveTokens = true;
+                })
+                .AddApple(a =>
+                {
+                    a.ClientId = Configuration["AppleClientId"];
+                    a.KeyId = Configuration["AppleKeyId"];
+                    a.TeamId = Configuration["AppleTeamId"];
+                    a.UsePrivateKey(keyId
+                        => WebHostEnvironment.ContentRootFileProvider.GetFileInfo($"AuthKey_{keyId}.p8"));
+                    a.SaveTokens = true;
                 });
-                /* .AddGoogle(g =>
-                //{
-                //    g.ClientId = Configuration["GoogleClientId"];
-                //    g.ClientSecret = Configuration["GoogleClientSecret"];
-                //    g.SaveTokens = true;
-                //})
-                //.AddMicrosoftAccount(ms =>
-                //{
-                //    ms.ClientId = Configuration["MicrosoftClientId"];
-                //    ms.ClientSecret = Configuration["MicrosoftClientSecret"];
-                //    ms.SaveTokens = true;
-                //})
-                //.AddApple(a =>
-                //{
-                //    a.ClientId = Configuration["AppleClientId"];
-                //    a.KeyId = Configuration["AppleKeyId"];
-                //    a.TeamId = Configuration["AppleTeamId"];
-                //    a.UsePrivateKey(keyId
-                //        => WebHostEnvironment.ContentRootFileProvider.GetFileInfo($"AuthKey_{keyId}.p8"));
-                //    a.SaveTokens = true;
-                //});
+            /* .AddGoogle(g =>
+            //{
+            //    g.ClientId = Configuration["GoogleClientId"];
+            //    g.ClientSecret = Configuration["GoogleClientSecret"];
+            //    g.SaveTokens = true;
+            //})
+            //.AddMicrosoftAccount(ms =>
+            //{
+            //    ms.ClientId = Configuration["MicrosoftClientId"];
+            //    ms.ClientSecret = Configuration["MicrosoftClientSecret"];
+            //    ms.SaveTokens = true;
+            //})
+            
 
-            /*
-            * For Apple signin
-            * If you are running the app on Azure you must add the Configuration setting
-            * WEBSITE_LOAD_USER_PROFILE = 1
-            * Without this setting you will get a File Not Found exception when AppleAuthenticationHandler tries to generate a certificate using your Auth_{keyId].P8 file.
-            */
+        /*
+        * For Apple signin
+        * If you are running the app on Azure you must add the Configuration setting
+        * WEBSITE_LOAD_USER_PROFILE = 1
+        * Without this setting you will get a File Not Found exception when AppleAuthenticationHandler tries to generate a certificate using your Auth_{keyId].P8 file.
+        */
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

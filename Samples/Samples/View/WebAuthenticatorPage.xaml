@@ -19,7 +19,8 @@
                 <Button Text="Facebook" Command="{Binding FacebookCommand}" BackgroundColor="#3b5998" TextColor="White" />
                 <Button Text="Apple" Command="{Binding AppleCommand}" BackgroundColor="Black" TextColor="White" />
 
-                <Label Text="Auth Token:" FontAttributes="Bold" Margin="12,12,12,0" />
+                <Label Text="User Info:" FontAttributes="Bold" Margin="12,12,12,0" />
+                <Label Text="{Binding Email}" TextColor="Green" FontAttributes="Italic" />
                 <Label Text="{Binding AuthToken}" TextColor="Red" FontAttributes="Italic" />
             </StackLayout>
         </ScrollView>

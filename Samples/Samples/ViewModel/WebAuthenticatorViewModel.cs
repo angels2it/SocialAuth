@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -34,6 +35,14 @@ namespace Samples.ViewModel
             set => SetProperty(ref accessToken, value);
         }
 
+        string email = string.Empty;
+
+        public string Email
+        {
+            get => email;
+            set => SetProperty(ref email, value);
+        }
+
         async Task OnAuthenticate(string scheme)
         {
             try
@@ -53,7 +62,11 @@ namespace Samples.ViewModel
 
                     r = await WebAuthenticator.AuthenticateAsync(authUrl, callbackUrl);
                 }
-
+                var rawEmail = r?.Get("email");
+                if (!string.IsNullOrEmpty(rawEmail))
+                {
+                    Email = HttpUtility.UrlDecode(rawEmail);
+                }
                 AuthToken = r?.AccessToken ?? r?.IdToken;
             }
             catch (Exception ex)
