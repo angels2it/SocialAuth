@@ -14,12 +14,14 @@ namespace Samples.ViewModel
         public WebAuthenticatorViewModel()
         {
             MicrosoftCommand = new Command(async () => await OnAuthenticate("Microsoft"));
+            LinkedInCommand = new Command(async () => await OnAuthenticate("LinkedIn"));
             GoogleCommand = new Command(async () => await OnAuthenticate("Google"));
             FacebookCommand = new Command(async () => await OnAuthenticate("Facebook"));
             AppleCommand = new Command(async () => await OnAuthenticate("Apple"));
         }
 
         public ICommand MicrosoftCommand { get; }
+        public ICommand LinkedInCommand { get; }
 
         public ICommand GoogleCommand { get; }
 
@@ -49,7 +51,7 @@ namespace Samples.ViewModel
             {
                 WebAuthenticatorResult r = null;
 
-                if (scheme.Equals("Apple")
+                if (false && scheme.Equals("Apple")
                     && DeviceInfo.Platform == DevicePlatform.iOS
                     && DeviceInfo.Version.Major >= 13)
                 {
