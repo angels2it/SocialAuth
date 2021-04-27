@@ -61,6 +61,12 @@ namespace Sample.Server.WebAuthenticator
                     g.ClientId = Configuration["GoogleClientId"];
                     g.ClientSecret = Configuration["GoogleClientSecret"];
                     g.SaveTokens = true;
+                })
+                .AddLinkedIn(l =>
+                {
+                    l.ClientId = Configuration["LinkedInClientId"];
+                    l.ClientSecret = Configuration["LinkedInClientSecret"];
+                    l.SaveTokens = true;
                 });
             /*.AddMicrosoftAccount(ms =>
             //{
